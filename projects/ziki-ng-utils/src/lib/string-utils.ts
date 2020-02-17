@@ -8,7 +8,7 @@ export interface IMaskOptions {
     useDefaults?: boolean;
 }
 
-export class ZikiMaskString {
+class ZikiMaskString {
     private _pattern: string = '';
     private _options: IMaskOptions = { reverse: false, useDefaults: false };
 
@@ -212,11 +212,15 @@ export class ZikiMaskString {
 
 }
 
-export class ZikiMaskBuilder {
+class ZikiMaskBuilder {
     public static string(pattern?: string, opt?: IMaskOptions) {
         let _mask = new ZikiMaskString();
         _mask.setPattern(pattern);
         _mask.setOptions(opt);
         return _mask;
     }
+}
+
+export function stringMask(value:string,pattern:string,opt?:IMaskOptions): string {
+    return ZikiMaskBuilder.string(pattern, opt).apply(value);
 }

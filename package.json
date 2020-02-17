@@ -11,12 +11,6 @@
     "pack": "ng build ziki-ng-utils && cd dist/ziki-ng-utils && npm pack"
   },
   "private": true,
-  "dependencies": {
-    "@angular/common": ">=6.0.0",
-    "@angular/compiler": ">=6.0.0",
-    "@angular/core": ">=6.0.0",
-    "@angular/http": ">=6.0.0"
-  },
   "devDependencies": {
     "@angular/common": "~8.0.0",
     "@angular/compiler": "~8.0.0",

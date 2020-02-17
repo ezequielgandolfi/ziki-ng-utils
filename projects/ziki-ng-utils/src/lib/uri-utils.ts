@@ -1,22 +1,19 @@
 import { isNullOrUndefined } from "util";
-import { ZikiMaskBuilder } from "./string-utils";
+import { stringMask } from "./string-utils";
 
-export class ZikiUriUtils {
-    public static encodeURIParam(data: any): string {
-        if (!isNullOrUndefined(data)) {
-            if (data instanceof Boolean || typeof (data) === "boolean") {
-                return data.toString();
-            }
-            if (data instanceof Date) {
-                return [
-                    ZikiMaskBuilder.string('0000', { reverse: true }).apply(data.getFullYear().toString()),
-                    ZikiMaskBuilder.string('00', { reverse: true }).apply((data.getMonth() + 1).toString()),
-                    ZikiMaskBuilder.string('00', { reverse: true }).apply(data.getDate().toString())
-                ].join('-');
-            }
-            return encodeURIComponent(data);
+export function encodeURIParam(data: any): string {
+    if (!isNullOrUndefined(data)) {
+        if (data instanceof Boolean || typeof (data) === "boolean") {
+            return data.toString();
         }
-        return '';
+        if (data instanceof Date) {
+            return [
+                stringMask(data.getFullYear().toString(), '0000', { reverse: true }),
+                stringMask((data.getMonth() + 1).toString(), '00', { reverse: true }),
+                stringMask(data.getDate().toString(), '00', { reverse: true })
+            ].join('-');
+        }
+        return encodeURIComponent(data);
     }
+    return '';
 }
-
