@@ -14,13 +14,13 @@
           "options": {
             "tsConfig": "projects/ziki-ng-utils/tsconfig.lib.json",
             "project": "projects/ziki-ng-utils/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/ziki-ng-utils/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {

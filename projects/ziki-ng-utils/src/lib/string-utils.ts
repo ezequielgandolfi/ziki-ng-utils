@@ -224,3 +224,30 @@ class ZikiMaskBuilder {
 export function stringMask(value:string,pattern:string,opt?:IMaskOptions): string {
     return ZikiMaskBuilder.string(pattern, opt).apply(value);
 }
+
+export function copyTextToClipboard(text): boolean {
+    let textArea = document.createElement("textarea");
+    textArea.style.position = 'fixed';
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.width = '2em';
+    textArea.style.height = '2em';
+    textArea.style.padding = '0';
+    textArea.style.border = 'none';
+    textArea.style.outline = 'none';
+    textArea.style.boxShadow = 'none';
+    textArea.style.background = 'transparent';
+    textArea.style.opacity = '0';
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    let success;
+    try {
+        success = document.execCommand('copy');
+    } catch (err) {
+        success = false;
+    }
+    document.body.removeChild(textArea);
+    return success;
+}
